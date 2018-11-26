@@ -6,8 +6,11 @@
     "axios": "^0.18.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "react-scripts": "1.1.5"
+    "react-flags": "^0.1.17",
+    "react-scripts": "1.1.5",
+    "react-table": "^6.8.6"
   },
+  "author": "Debmalya Jash",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
