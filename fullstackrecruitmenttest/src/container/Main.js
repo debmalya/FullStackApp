@@ -28,6 +28,7 @@ class Main extends Component {
         this.setState({
             isLoaded: true,
             employees: response.data.employeeList,
+            errors: response.data.errorRecordsList,
         }, err => {
           //console.log("Server rejected response with: " ,err);
         })
@@ -49,7 +50,7 @@ class Main extends Component {
   }
 
   render() {
-    const data = this.employees
+   
 
     const columns = [
        {id:'name',Header: 'Name',accessor: 'name'},
@@ -57,6 +58,11 @@ class Main extends Component {
        {Header:'Designation',accessor:'designation'},
        {Header:'Salary',accessor:'salary'},
        {Header:'Joining Date',accessor:'joiningDate'}]
+
+    const error_columns = [
+        {id:'record',Header: 'Record',accessor: 'record'},
+        {Header: 'Error Message',accessor: 'errorMsg'},
+        {Header:'Record Number',accessor:'recordNo'}]   
     return (
       <div className="Main">
           <h1>Welcome to React</h1>
@@ -64,10 +70,19 @@ class Main extends Component {
               <input type="file" id="myFile" onChange={(e)=>this.fileUpload(e)}></input>
             </div>
             <div>
+              <h2>Valid Records</h2>
             <ReactTable
                    
                   data={this.state.employees}
                   columns={columns}
+              />
+            </div>
+            <div>
+              <h2>Errors</h2>
+            <ReactTable
+                   
+                  data={this.state.errors}
+                  columns={error_columns}
               />
             </div>
       </div>
