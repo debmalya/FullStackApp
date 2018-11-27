@@ -57,7 +57,7 @@ public class UploadFileService {
     public UploadResponse processCSVData(String[] data) {
         UploadResponse uploadResponse = new UploadResponse();
 
-        long total = 0;
+        long total = 1;
         long errors = 0;
 
         for (String eachRow : data) {
@@ -123,6 +123,7 @@ public class UploadFileService {
             }
 
             try {
+                simpleDateFormat.setLenient(false);
                 long joiningTime = simpleDateFormat.parse(values[4]).getTime();
                 employee.setJoiningDate(joiningTime);
             } catch (ParseException e) {
@@ -130,7 +131,7 @@ public class UploadFileService {
                 isError = true;
 
                 ErrorRecord errorRecord = new ErrorRecord();
-                errorRecord.setErrorMsg(String.format("Joining date '%s' is not valid. Format 'yyyy-MM-dd'", values[3]));
+                errorRecord.setErrorMsg(String.format("Joining date '%s' is not valid. Format 'yyyy-MM-dd'", values[4]));
                 errorRecord.setRecord(eachRow);
                 errorRecord.setRecordNo(total);
                 uploadResponse.getErrorRecordsList().add(errorRecord);
